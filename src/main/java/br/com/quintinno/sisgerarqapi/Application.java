@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.com.quintinno.sisgerarqapi.model.ArquivoModel;
 import br.com.quintinno.sisgerarqapi.model.DiretorioModel;
+import br.com.quintinno.sisgerarqapi.service.ArquivoService;
 import br.com.quintinno.sisgerarqapi.service.DiretorioService;
 
 @SpringBootApplication
@@ -17,6 +19,9 @@ public class Application {
 	
 	@Autowired
 	private DiretorioService diretorioService;
+	
+	@Autowired
+	private ArquivoService arquivoService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -71,6 +76,21 @@ public class Application {
 			diretorioModel4.seteAtivo(true);
 			
 			this.diretorioService.saveOne(diretorioModel4);
+			
+		ArquivoModel arquivoModel1 = new ArquivoModel();
+			arquivoModel1.setCodigo(UUID.randomUUID());
+			arquivoModel1.setDiretorioModel(diretorioModel2);
+			arquivoModel1.seteAtivo(true);
+			arquivoModel1.setExtencao("PDF");
+			arquivoModel1.setNome("A Arte da Guerra");
+			arquivoModel1.setPessoa(UUID.randomUUID());
+			arquivoModel1.setTamanho(1500);
+			arquivoModel1.setDataCriacao(new Date());
+			arquivoModel1.setDataModificacao(new Date());
+			arquivoModel1.setUrl("");
+			
+			this.arquivoService.saveOne(arquivoModel1);
+			
 	}
-
+	
 }
