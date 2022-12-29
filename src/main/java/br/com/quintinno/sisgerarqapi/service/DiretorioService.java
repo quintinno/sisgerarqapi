@@ -16,7 +16,7 @@ public class DiretorioService {
 	private DiretorioRepository diretorioRepository;
 	
 	public DiretorioModel saveOne(DiretorioModel diretorioModel) {
-		if (this.verificarDiretorioDuplicado(diretorioModel)) {
+		if (!this.isDiretorioDuplicado(diretorioModel)) {
 			diretorioModel = this.diretorioRepository.save(this.configurarDiretorioPersistencia(diretorioModel));
 		}
 		return diretorioModel;
@@ -38,8 +38,15 @@ public class DiretorioService {
 		return diretorioModel;
 	}
 
-	private Boolean verificarDiretorioDuplicado(DiretorioModel diretorioModel) {
-		List<DiretorioModel> diretorioModelList = this.diretorioRepository.findByNome(diretorioModel.getNome());
+	private Boolean isDiretorioDuplicado(DiretorioModel diretorioModel) {
+		for (DiretorioModel diretorioModelResultado : this.diretorioRepository.findByNome(diretorioModel.getNome())) {
+			if (diretorioModelResultado.getDiretorioPai() == null && diretorioModel.getDiretorioPai() == null) {
+				return true;
+			}
+			if (diretorioModelResultado.getDiretorioPai() == diretorioModel.getDiretorioPai()) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
