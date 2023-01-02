@@ -1,7 +1,5 @@
 package br.com.quintinno.sisgerarqapi.repository;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;

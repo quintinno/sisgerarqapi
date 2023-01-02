@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.quintinno.sisgerarqapi.exception.DiretorioDuplicadoException;
 import br.com.quintinno.sisgerarqapi.model.DiretorioModel;
 import br.com.quintinno.sisgerarqapi.service.DiretorioService;
 
@@ -20,7 +21,7 @@ public class DiretorioController {
     private DiretorioService diretorioService;
 
     @PostMapping
-    public DiretorioModel saveOne(@RequestBody DiretorioModel diretorioModel) {
+    public DiretorioModel saveOne(@RequestBody DiretorioModel diretorioModel) throws DiretorioDuplicadoException {
         return this.diretorioService.saveOne(diretorioModel);
     }
 

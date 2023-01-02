@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.quintinno.sisgerarqapi.exception.DiretorioDuplicadoException;
 import br.com.quintinno.sisgerarqapi.model.DiretorioModel;
 import br.com.quintinno.sisgerarqapi.repository.DiretorioImplementacaoRepository;
 import br.com.quintinno.sisgerarqapi.repository.DiretorioRepository;
@@ -19,7 +20,7 @@ public class DiretorioService {
 	@Autowired
 	private DiretorioImplementacaoRepository diretorioImplementacaoRepository;
 	
-	public DiretorioModel saveOne(DiretorioModel diretorioModel) {
+	public DiretorioModel saveOne(DiretorioModel diretorioModel) throws DiretorioDuplicadoException {
 		if (this.isDiretorioDuplicado(diretorioModel)) {
 			diretorioModel = this.diretorioRepository.save(this.configurarDiretorioPersistencia(diretorioModel));
 		}
@@ -42,9 +43,12 @@ public class DiretorioService {
 		return diretorioModel;
 	}
 
-	private Boolean isDiretorioDuplicado(DiretorioModel diretorioModel) {
-		return this.diretorioImplementacaoRepository.verificarDiretorioDuplicado(diretorioModel.getDiretorioPai(), diretorioModel.getNome());
-//		return true;
+	private Boolean isDiretorioDuplicado(DiretorioModel diretorioModel) throws DiretorioDuplicadoException {
+		boolean isDuplicidade = this.diretorioImplementacaoRepository.verificarDiretorioDuplicado(diretorioModel.getDiretorioPai(), diretorioModel.getNome());
+		if (!isDuplicidade) {
+			throw new DiretorioDuplicadoException();
+		}
+		return isDuplicidade;
 	}
 	
 }
