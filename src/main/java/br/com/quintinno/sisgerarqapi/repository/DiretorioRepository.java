@@ -8,5 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.quintinno.sisgerarqapi.model.DiretorioModel;
 
 public interface DiretorioRepository extends JpaRepository<DiretorioModel, UUID> {
+	
     public List<DiretorioModel> findByNome(String nome);
+    
 }

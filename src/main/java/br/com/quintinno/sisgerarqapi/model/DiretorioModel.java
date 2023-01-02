@@ -5,7 +5,14 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TB_DIRETORIO")
@@ -14,12 +21,12 @@ public class DiretorioModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CODIGO", nullable = false)
-	private UUID codigo;
+	private Long codigo;
 	
 	@Column(name = "ID_DIRETORIO_PAI", nullable = false)
-	private UUID diretorioPai;
+	private Long diretorioPai;
 	
 	@Column(name = "ID_PESSOA", nullable = false)
 	private UUID pessoa;
@@ -43,19 +50,19 @@ public class DiretorioModel implements Serializable {
 	
 	public DiretorioModel() { }
 
-	public UUID getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(UUID codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
-	public UUID getDiretorioPai() {
+	public Long getDiretorioPai() {
 		return diretorioPai;
 	}
 
-	public void setDiretorioPai(UUID diretorioPai) {
+	public void setDiretorioPai(Long diretorioPai) {
 		this.diretorioPai = diretorioPai;
 	}
 

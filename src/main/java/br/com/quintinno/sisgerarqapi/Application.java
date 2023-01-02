@@ -1,18 +1,7 @@
 package br.com.quintinno.sisgerarqapi;
 
-import java.util.Date;
-import java.util.UUID;
-
-import javax.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import br.com.quintinno.sisgerarqapi.model.ArquivoModel;
-import br.com.quintinno.sisgerarqapi.model.DiretorioModel;
-import br.com.quintinno.sisgerarqapi.service.ArquivoService;
-import br.com.quintinno.sisgerarqapi.service.DiretorioService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class Application {
 	
-	@Autowired
-	private DiretorioService diretorioService;
-	
-	@Autowired
-	private ArquivoService arquivoService;
+//	@Autowired
+//	private DiretorioService diretorioService;
+//	
+//	@Autowired
+//	private ArquivoService arquivoService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
