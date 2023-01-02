@@ -15,7 +15,7 @@ public class ResponseException extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(DiretorioDuplicadoException.class)
 	public ResponseEntity<ResponseExceptionDTO> exception(DiretorioDuplicadoException diretorioDuplicadoException) {
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseExceptionDTO(DIRETORIO_DUPLICADO, HttpStatus.CONFLICT.value()));
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseExceptionDTO(DIRETORIO_DUPLICADO, HttpStatus.CONFLICT.name()));
 	}
 
 }

@@ -2,27 +2,29 @@ package br.com.quintinno.sisgerarqapi.dto;
 
 import java.util.Date;
 
+import br.com.quintinno.sisgerarqapi.utility.DataUtility;
+
 public class ResponseExceptionDTO {
 	
-	private Date data;
+	private String data;
 
     private String mensagem;
 
-    private int situacao;
+    private String situacao;
 
     public ResponseExceptionDTO() { }
 
-    public ResponseExceptionDTO(String mensagem, int situacao) {
-        this.data = new Date();
+    public ResponseExceptionDTO(String mensagem, String situacao) {
+        this.data = DataUtility.formatarData(new Date(), DataUtility.FORMATO_DATA_DDMMAAAA_HHMMSS);
         this.mensagem = mensagem;
         this.situacao = situacao;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -34,11 +36,11 @@ public class ResponseExceptionDTO {
         this.mensagem = mensagem;
     }
 
-    public int getSituacao() {
+    public String getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(int situacao) {
+    public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
 
