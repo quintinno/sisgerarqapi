@@ -36,7 +36,7 @@ public class ArquivoModel implements Serializable {
 	private String nome;
 	
 	@Column(name = "TAMANHO", nullable = false)
-	private Integer tamanho;
+	private Long tamanho;
 	
 	@Column(name = "EXTENCAO", nullable = false)
 	private String extencao;
@@ -44,7 +44,7 @@ public class ArquivoModel implements Serializable {
 	@Column(name = "DATA_CRIACAO", nullable = false)
 	private Date dataCriacao;
 
-	@Column(name = "DATA_MODIFICACAO", nullable = false)
+	@Column(name = "DATA_MODIFICACAO")
 	private Date dataModificacao;
 	
 	@Column(name = "URL", nullable = false)
@@ -54,6 +54,15 @@ public class ArquivoModel implements Serializable {
 	private Boolean eAtivo;
 	
 	public ArquivoModel() { }
+
+	public ArquivoModel(String nome, Long tamanho, String extencao) {
+		this.pessoa = UUID.randomUUID();
+		this.nome = nome;
+		this.tamanho = tamanho;
+		this.extencao = extencao;
+		this.dataCriacao = new Date();
+		this.eAtivo = true;
+	}
 
 	public UUID getCodigo() {
 		return codigo;
@@ -87,11 +96,11 @@ public class ArquivoModel implements Serializable {
 		this.nome = nome;
 	}
 
-	public Integer getTamanho() {
+	public Long getTamanho() {
 		return tamanho;
 	}
 
-	public void setTamanho(Integer tamanho) {
+	public void setTamanho(Long tamanho) {
 		this.tamanho = tamanho;
 	}
 
