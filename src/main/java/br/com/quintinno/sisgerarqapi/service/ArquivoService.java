@@ -19,9 +19,7 @@ public class ArquivoService {
 
 	@Autowired
 	private ArquivoRepository arquivoRepository;
-	
-	public static final String DIRETORIO = System.getProperty("user.home").concat(File.separator).concat("SISGERARQRPS");
-	
+
 	public ArquivoModel saveOne(ArquivoModel arquivoModel) {
 		return this.arquivoRepository.save(arquivoModel);
 	}
@@ -33,8 +31,21 @@ public class ArquivoService {
 	}
 	
 	private void gravarArquivoDiretorio(MultipartFile multipartFile) throws IOException {
-		Path path = Paths.get(DIRETORIO, multipartFile.getOriginalFilename()).toAbsolutePath().normalize();
+		Path path = Paths.get(gerarCaminhoDiretorio(), multipartFile.getOriginalFilename()).toAbsolutePath().normalize();
 		Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+	}
+
+	private String gerarCaminhoDiretorio() {
+		StringBuilder diretorio = new StringBuilder(System.getProperty("user.dir"))
+				.append(File.separator)
+				.append("src")
+				.append(File.separator)
+				.append("main")
+				.append(File.separator)
+				.append("resources")
+				.append(File.separator)
+				.append("repository");
+		return diretorio.toString();
 	}
 	
 }

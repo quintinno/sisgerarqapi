@@ -8,7 +8,7 @@ create table if not exists tb_arquivo (
 	tamanho varchar(100) not null,
 	data_criacao date not null,
 	data_modificacao date not null,
-	extencao varchar(5) not null,
+	extencao varchar(60) not null,
 	url varchar(100) not null,
 	e_ativo boolean not null,
 	constraint pk_arquivo primary key (codigo),
