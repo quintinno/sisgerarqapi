@@ -18,8 +18,8 @@ public class ArquivoController {
 	@Autowired
 	private ArquivoService arquivoService;
 	
-	@PostMapping("/{sistema-origem}")
-	public ResponseExceptionDTO uploadOne(@PathVariable("sistema-origem") Long sistemaOrigem, @RequestParam("arquivo") MultipartFile multipartFile) throws IOException {
+	@PostMapping
+	public ResponseExceptionDTO uploadOne(@RequestParam("sistema-origem") Long sistemaOrigem, @RequestParam("arquivo") MultipartFile multipartFile) throws IOException {
 		this.arquivoService.uploadOne(sistemaOrigem, multipartFile);
 		return new ResponseExceptionDTO("Arquivo Recepcionado com Sucesso!", HttpStatus.OK.name() );
 	}
