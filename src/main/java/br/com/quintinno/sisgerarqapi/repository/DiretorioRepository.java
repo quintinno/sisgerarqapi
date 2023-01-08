@@ -10,5 +10,7 @@ import br.com.quintinno.sisgerarqapi.model.DiretorioModel;
 public interface DiretorioRepository extends JpaRepository<DiretorioModel, UUID> {
 	
     public List<DiretorioModel> findByNome(String nome);
+
+    public DiretorioModel findByCodigo(Long codigo);
     
 }

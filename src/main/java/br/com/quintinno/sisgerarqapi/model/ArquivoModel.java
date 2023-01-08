@@ -1,18 +1,10 @@
 package br.com.quintinno.sisgerarqapi.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_ARQUIVO")
@@ -24,7 +16,7 @@ public class ArquivoModel implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CODIGO", unique = true, nullable = false)
 	private UUID codigo;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "ID_DIRETORIO", nullable = false)
 	private DiretorioModel diretorioModel;
@@ -52,7 +44,10 @@ public class ArquivoModel implements Serializable {
 	
 	@Column(name = "E_ATIVO", nullable = false)
 	private Boolean eAtivo;
-	
+
+	@Transient
+	private Long sistemaOrigem;
+
 	public ArquivoModel() { }
 
 	public ArquivoModel(String nome, Long tamanho, String extencao) {
@@ -70,6 +65,14 @@ public class ArquivoModel implements Serializable {
 
 	public void setCodigo(UUID codigo) {
 		this.codigo = codigo;
+	}
+
+	public Long getSistemaOrigem() {
+		return sistemaOrigem;
+	}
+
+	public void setSistemaOrigem(Long sistemaOrigem) {
+		this.sistemaOrigem = sistemaOrigem;
 	}
 
 	public DiretorioModel getDiretorioModel() {

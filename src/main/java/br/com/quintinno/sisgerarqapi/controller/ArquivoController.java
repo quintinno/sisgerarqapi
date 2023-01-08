@@ -1,13 +1,11 @@
 package br.com.quintinno.sisgerarqapi.controller;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.quintinno.sisgerarqapi.dto.ResponseExceptionDTO;
@@ -20,9 +18,9 @@ public class ArquivoController {
 	@Autowired
 	private ArquivoService arquivoService;
 	
-	@PostMapping
-	public ResponseExceptionDTO uploadOne(@RequestParam("arquivo") MultipartFile multipartFile) throws IOException {
-		this.arquivoService.uploadOne(multipartFile);
+	@PostMapping("/{sistema-origem}")
+	public ResponseExceptionDTO uploadOne(@PathVariable("sistema-origem") Long sistemaOrigem, @RequestParam("arquivo") MultipartFile multipartFile) throws IOException {
+		this.arquivoService.uploadOne(sistemaOrigem, multipartFile);
 		return new ResponseExceptionDTO("Arquivo Recepcionado com Sucesso!", HttpStatus.OK.name() );
 	}
 
